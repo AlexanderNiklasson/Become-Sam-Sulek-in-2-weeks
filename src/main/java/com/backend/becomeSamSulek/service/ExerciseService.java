@@ -18,7 +18,12 @@ public class ExerciseService {
     @Autowired
     private ExerciseRepository exerciseRepository;
 
-
+    public List<Exercise> getAllExercises(){
+        return exerciseRepository.findAll();
+    }
+    public List<Exercise> getAllExercises(String level){
+        return exerciseRepository.findAllByLevel(level);
+    }
     public Exercise getOneExercise(int id){
         return exerciseRepository
                 .findByIntId(id)
