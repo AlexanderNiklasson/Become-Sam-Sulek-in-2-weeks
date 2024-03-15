@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BecomeSamSulekApplication {
 
 	public static void main(String[] args) {
+		System.out.println("test of branch: test");;
 		SpringApplication.run(BecomeSamSulekApplication.class, args);
 	}
 
