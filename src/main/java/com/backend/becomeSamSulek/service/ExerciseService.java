@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpStatusCodeException;
 
@@ -18,11 +19,12 @@ public class ExerciseService {
     @Autowired
     private ExerciseRepository exerciseRepository;
 
-    public List<Exercise> getAllExercises(){
-        return exerciseRepository.findAll();
-    }
     public List<Exercise> getAllExercises(String level){
-        return exerciseRepository.findAllByLevel(level);
+        if(level == null)
+            return exerciseRepository.findAll();
+        else {
+            return exerciseRepository.findAllByLevel(level);
+        }
     }
     public Exercise getOneExercise(int id){
         return exerciseRepository

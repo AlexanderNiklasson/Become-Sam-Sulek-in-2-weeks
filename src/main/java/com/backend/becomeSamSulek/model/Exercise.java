@@ -13,8 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-
-
 @Entity
 @Table(name = "exercises")
 public class Exercise {
