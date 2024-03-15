@@ -15,17 +15,10 @@ public class ExerciseController {
     ExerciseService exerciseService;
 
     @GetMapping //
-    private ResponseEntity<Iterable<Exercise>> getAll(@RequestParam("level") String level){
-        if(level == null)
-            return new ResponseEntity<>(exerciseService.getAllExercises(), HttpStatus.OK);
-        else if(level.equals("beginner") || level.equals("intermediate") || level.equals("expert")){
-
-            return new ResponseEntity<>(exerciseService.getAllExercises(level), HttpStatus.OK);
-        }
-        else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
+    private ResponseEntity<Iterable<Exercise>> getAll(@RequestParam(value = "level", required=false) String level) {
+        return new ResponseEntity<>(exerciseService.getAllExercises(level), HttpStatus.OK);
     }
+
     @GetMapping("/{id}")
     private ResponseEntity<Exercise> getOne(@PathVariable int id){
         return new ResponseEntity<>(exerciseService.getOneExercise(id), HttpStatus.OK);
