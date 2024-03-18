@@ -1,7 +1,9 @@
 package com.backend.becomeSamSulek.seed;
 
 import com.backend.becomeSamSulek.model.Exercise;
+import com.backend.becomeSamSulek.model.User;
 import com.backend.becomeSamSulek.repository.ExerciseRepository;
+import com.backend.becomeSamSulek.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.List;
 public class DatabaseSeeder implements CommandLineRunner {
     @Autowired
     ExerciseRepository exerciseRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -38,6 +43,13 @@ public class DatabaseSeeder implements CommandLineRunner {
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<Exercise> exercises = objectMapper.readValue(jsonContent, new TypeReference<List<Exercise>>() {});
                 exerciseRepository.saveAll(exercises);
+
+                User user = new User();
+                user.setUsername("droopie");
+                user.setLevel("beginner");
+                user.setType("fullbody");
+                user.setDuration(30);
+                userRepository.save(user);
             }
         } catch (IOException e) {
             e.printStackTrace();
