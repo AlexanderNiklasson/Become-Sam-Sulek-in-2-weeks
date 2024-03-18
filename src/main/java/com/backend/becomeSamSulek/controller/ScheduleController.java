@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/schedule")
+@CrossOrigin
 public class ScheduleController {
     @Autowired
     ScheduleService scheduleService;
@@ -19,6 +20,10 @@ public class ScheduleController {
         return new ResponseEntity<>(scheduleService.getOne(id), HttpStatus.OK);
     }
 
+    @PutMapping("/{id}")
+    private ResponseEntity<Schedule> updateSchedule(@PathVariable int id, @RequestBody Schedule schedule) {
+        return new ResponseEntity<>(scheduleService.updateSchedule(id, schedule), HttpStatus.OK);
+    }
 
 
     @PostMapping

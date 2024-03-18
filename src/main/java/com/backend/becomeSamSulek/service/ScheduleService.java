@@ -51,4 +51,14 @@ public class ScheduleService {
         }
         return scheduleRepository.save(schedule);
     }
+
+    public Schedule updateSchedule(int id, Schedule schedule) {
+        Schedule scheduleTemp = scheduleRepository
+                .findByOwnerId(id)
+                .orElseThrow(() -> new HttpStatusCodeException(HttpStatus.NOT_FOUND) {
+                });
+        scheduleTemp.setWeek(schedule.getWeek());
+        scheduleTemp.setIds(schedule.getIds());
+        return scheduleRepository.save(scheduleTemp);
+    }
 }
