@@ -5,15 +5,14 @@ import com.backend.becomeSamSulek.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/users")
+@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
@@ -22,4 +21,8 @@ public class UserController {
         return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
     }
 
+    @PostMapping
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
+    }
 }
