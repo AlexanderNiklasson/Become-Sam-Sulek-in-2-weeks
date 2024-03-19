@@ -27,7 +27,6 @@ public class UserService {
         User userTemp = userRepository.getOneByUsername(user.getUsername());
         if(userTemp != null) {
             throw new HttpStatusCodeException(HttpStatus.BAD_REQUEST, "Username already exists") {};
-
         }
         userRepository.save(user);
         return user;
