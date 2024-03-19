@@ -42,6 +42,8 @@ public class DatabaseSeeder implements CommandLineRunner {
 
                 ObjectMapper objectMapper = new ObjectMapper();
                 List<Exercise> exercises = objectMapper.readValue(jsonContent, new TypeReference<List<Exercise>>() {});
+
+                ComplexityAlgorithm.calculateComplexity(exercises);
                 exerciseRepository.saveAll(exercises);
 
                 User user = new User();

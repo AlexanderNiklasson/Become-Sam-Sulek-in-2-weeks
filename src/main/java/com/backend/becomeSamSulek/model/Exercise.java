@@ -28,6 +28,7 @@ public class Exercise {
     private String level;
     private String mechanic;
     private String equipment;
+    private String complexity;
     @Column(length = 1000)
     private List<String> primaryMuscles;
     @Column(length = 1000)
