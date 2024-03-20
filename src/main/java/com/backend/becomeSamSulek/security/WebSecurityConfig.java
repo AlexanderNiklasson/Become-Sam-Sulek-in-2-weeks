@@ -57,6 +57,12 @@ public class WebSecurityConfig {
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/schedule/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.POST, "/schedule/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.PUT, "/schedule/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.DELETE, "/schedule/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/exercise/**").hasRole("USER")
+                        .requestMatchers(HttpMethod.GET, "/user/**").hasRole("USER")
                         .anyRequest().authenticated()
                 );
         http.authenticationProvider(authenticationProvider());

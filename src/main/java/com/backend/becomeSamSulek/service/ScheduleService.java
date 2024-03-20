@@ -61,4 +61,12 @@ public class ScheduleService {
         scheduleTemp.setIds(schedule.getIds());
         return scheduleRepository.save(scheduleTemp);
     }
+
+    public void deleteSchedule(int id) {
+        Schedule schedule = scheduleRepository
+                .findByOwnerId(id)
+                .orElseThrow(() -> new HttpStatusCodeException(HttpStatus.NOT_FOUND) {
+                });
+        scheduleRepository.delete(schedule);
+    }
 }

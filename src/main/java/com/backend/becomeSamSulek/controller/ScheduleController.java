@@ -30,4 +30,10 @@ public class ScheduleController {
     private ResponseEntity<Schedule> addSchedule(@RequestBody Schedule schedule) {
         return new ResponseEntity<>(scheduleService.addSchedule(schedule), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    private ResponseEntity<Void> deleteSchedule(@PathVariable int id) {
+        scheduleService.deleteSchedule(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
