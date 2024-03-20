@@ -1,10 +1,12 @@
 package com.backend.becomeSamSulek.service;
 
+import com.backend.becomeSamSulek.helper.WorkoutGenerator;
 import com.backend.becomeSamSulek.model.Day;
 import com.backend.becomeSamSulek.model.Exercise;
 import com.backend.becomeSamSulek.model.Schedule;
 import com.backend.becomeSamSulek.repository.ExerciseRepository;
 import com.backend.becomeSamSulek.repository.ScheduleRepository;
+import com.backend.becomeSamSulek.requests.WorkoutGenerateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,10 @@ public class ScheduleService {
 
     @Autowired
     ExerciseRepository exerciseRepository;
+
+    public Iterable<Schedule> getAll() {
+        return scheduleRepository.findAll();
+    }
     public Schedule getOne(int id) {
         Schedule schedule = scheduleRepository.findByOwnerId(id).orElse(null);
 
@@ -68,5 +74,11 @@ public class ScheduleService {
                 .orElseThrow(() -> new HttpStatusCodeException(HttpStatus.NOT_FOUND) {
                 });
         scheduleRepository.delete(schedule);
+    }
+
+    public Schedule generateSchedule(WorkoutGenerateRequest workoutGenerateRequest) {
+
+        return scheduleRepository.save(WorkoutGenerator.generateWorkout(workoutGenerateRequest, exerciseRepository.findAll()));
+
     }
 }

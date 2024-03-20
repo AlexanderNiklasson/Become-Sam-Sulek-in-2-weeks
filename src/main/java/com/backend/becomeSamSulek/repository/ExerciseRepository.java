@@ -13,4 +13,5 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Integer> {
     public Optional<Exercise> findByIntId(int id);
 
     public List<Exercise> findAllByLevel(String level);
+
 }
