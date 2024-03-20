@@ -1,5 +1,6 @@
 package com.backend.becomeSamSulek.controller;
 
+import com.backend.becomeSamSulek.model.Schedule;
 import com.backend.becomeSamSulek.model.User;
 import com.backend.becomeSamSulek.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user) {
         return new ResponseEntity<>(userService.addUser(user), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    private ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
+        return new ResponseEntity<>(userService.updateUser(id, user), HttpStatus.OK);
     }
 }
