@@ -21,3 +21,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         show_sql: false
+samsulek:
+  app:
+    jwtSecret: ===============================Samsulek=Spring==============================================
+    jwtExpirationMs: 86400000
