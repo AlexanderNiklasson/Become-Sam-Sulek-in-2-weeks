@@ -27,6 +27,7 @@ public class Schedule {
 
     private int ownerId;
 
+    @Column(length = 1000)
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String idsJson;
 
